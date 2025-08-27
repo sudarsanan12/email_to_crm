@@ -481,6 +481,7 @@ class MailThread(models.AbstractModel):
                         })
                         payment.action_post()
                         invoice.payment_state = 'paid'
+                        lead.invioce_fully_paid = True
                         _logger.info('Created Invoice ID : %s', invoice.id)
                     return
             if email_from.endswith('airbnb.com'):
@@ -570,6 +571,7 @@ class MailThread(models.AbstractModel):
                                     })
                                     payment.action_post()
                                     invoice.payment_state = 'paid'
+                                    lead.invioce_fully_paid = True
                                     _logger.info('Created Invoice ID : %s', invoice.id)
                         _logger.info('Processed Airbnb booking with Account ID: %s', summary.get('Airbnb Account ID'))
                         return
@@ -656,6 +658,7 @@ class MailThread(models.AbstractModel):
                         payment.action_post()
                         # Link the payment with the invoice
                         invoice.payment_state = 'paid'
+                        lead.invioce_fully_paid = True
                         _logger.info('Created Invoice ID : %s', invoice.id)
 
             if email_from.endswith('booking.com') or email_from == 'sudarsanan1996@gmail.com':
